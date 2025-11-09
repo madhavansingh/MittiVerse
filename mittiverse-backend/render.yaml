@@ -1,0 +1,55 @@
+# Forcing a new deploy to fix cache issue
+# render.yaml
+# Infrastructure definition for Render Blueprint Deployment
+
+services:
+  # === 1. BACKEND SERVICE ===
+  - type: web
+    name: greenfund-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      # --- Connect to the PostgreSQL Database ---
+      - key: DATABASE_URL
+        fromDatabase:
+          name: greenfund-db
+          property: connectionString
+
+      # --- Security and Configuration ---
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+
+      # --- CORS: Allow Frontend Access ---
+      - key: CORS_ORIGIN
+        value: https://greenfund-frontend.onrender.com
+
+      # --- Optional API Key (add manually later) ---
+      - key: OPENAI_API_KEY
+        sync: false
+
+  # === 2. FRONTEND SERVICE ===
+  - type: web
+    name: greenfund-frontend
+    runtime: docker
+    plan: free
+    repo: https://github.com/edwin3v3/greenfund-frontend
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    envVars:
+      # --- Connect to Backend API ---
+      - key: VITE_API_BASE_URL
+        value: https://greenfund-backend.onrender.com
+      - key: VITE_API_BASE_URL_SUFFIX
+        value: /api
+
+# === 3. POSTGRESQL DATABASE ===
+databases:
+  - name: greenfund-db
+    plan: free
+    databaseName: greenfund
+    user: greenfund_user
+    postgresMajorVersion: "16"

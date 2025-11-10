@@ -1,11 +1,11 @@
-import os # <-- 1. Import os
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
 from fastapi import FastAPI, APIRouter
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles # <-- Import StaticFiles
+from fastapi.staticfiles import StaticFiles
 
 from app.database import create_db_and_tables
 from app.routers import (
@@ -23,27 +23,25 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 
-# --- vvvv UPDATED CORS vvvv ---
-# Get the production frontend URL from the environment
-# Default to localhost for local development
-prod_origin = os.getenv("CORS_ORIGIN", "http://localhost:5173")
+# --- ✅ UPDATED CORS SETUP ---
+prod_origin = os.getenv("CORS_ORIGIN", "https://mitti-verse.vercel.app")
 
 origins = [
-    prod_origin,             # The live frontend URL (e.g., https://greenfund.onrender.com)
-    "http://localhost:5173", # Keep localhost for local testing
+    prod_origin,
+    "https://mitti-verse.vercel.app",
+    "http://localhost:5173"
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,     # <-- Use the dynamic origins list
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# --- ^^^^ END CORS UPDATE ^^^^ ---
 
-# --- Mount Static Files ---
-# This makes /static/farm_images/... work
+
+# --- Static Files ---
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
@@ -62,10 +60,12 @@ api_router.include_router(chatbot.router)
 api_router.include_router(badges.router)
 api_router.include_router(notifications.router)
 
+
 app.include_router(api_router)
-# --- END ROUTER CONFIGURATION ---
 
 
+
+# --- Root Route ---
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the MittiVerse API"}

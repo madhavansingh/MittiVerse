@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const apiBaseUrl = 'http://127.0.0.1:8000/api';
+// Dynamically use API base URL from environment or fallback to localhost
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:8000/api';
 
 console.log("Using API Base URL:", apiBaseUrl);
 

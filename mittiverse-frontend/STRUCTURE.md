@@ -1,4 +1,4 @@
-GreenFund-test-Frontend/
+mittiverse-frontend/
 ├── src/
 │   ├── App.jsx
 │   ├── __tests__/

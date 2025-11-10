@@ -1,17 +1,16 @@
 import httpx
 from fastapi import HTTPException, status
 
-
 async def get_coords_from_location(location_text: str):
-    """Calls the Nominatim API to get lat/lon for a location name, restricted to Kenya."""
+    """Calls the Nominatim API to get lat/lon for a location name, restricted to India."""
     NOMINATIM_URL = "https://nominatim.openstreetmap.org/search"
     params = {
         "q": location_text,
         "format": "json",
         "limit": 1,
-        "countrycodes": "ke"
+        "countrycodes": "in"
     }
-    headers = {"User-Agent": "GreenFundApp/1.0"}
+    headers = {"User-Agent": "MittiVerseApp/1.0"}
 
     async with httpx.AsyncClient() as client:
         try:

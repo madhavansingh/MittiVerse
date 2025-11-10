@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiBaseUrl = 'https://greenfund-backend.onrender.com/api';
+const apiBaseUrl = 'http://127.0.0.1:8000/api';
 
 console.log("Using API Base URL:", apiBaseUrl);
 

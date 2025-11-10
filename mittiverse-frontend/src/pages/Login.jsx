@@ -47,7 +47,7 @@ function Login() {
       <div className="absolute inset-0 bg-black/40 z-0"></div>
       <div className="relative z-10 max-w-md w-full bg-surface p-8 rounded-lg shadow-xl">
         <h2 className="text-2xl font-bold text-text-primary mb-6 text-center">
-          Login to GreenFund
+          Login to MittiVerse
         </h2>
         
         <form onSubmit={handleSubmit} className="space-y-6">

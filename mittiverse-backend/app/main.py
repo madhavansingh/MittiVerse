@@ -1,4 +1,7 @@
 import os # <-- 1. Import os
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI, APIRouter
 from contextlib import asynccontextmanager
 from fastapi.middleware.cors import CORSMiddleware
@@ -65,4 +68,4 @@ app.include_router(api_router)
 
 @app.get("/")
 def read_root():
-    return {"message": "Welcome to the GreenFund API"}
+    return {"message": "Welcome to the MittiVerse API"}

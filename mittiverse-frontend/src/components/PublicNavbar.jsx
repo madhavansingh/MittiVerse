@@ -6,7 +6,7 @@ function PublicNavbar() {
     <header className="bg-surface shadow-md sticky top-0 z-50">
       <nav className="container mx-auto px-6 py-3 flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold text-primary">
-          🌿 GreenFund
+          🌿 MittiVerse
         </Link>
         <div className="flex items-center space-x-4">
           <Link to="/login" className="text-text-primary hover:text-primary transition">

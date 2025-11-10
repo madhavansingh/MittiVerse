@@ -15,7 +15,7 @@ function FarmCard({ farm }) {
           </div>
           <div className="flex items-center gap-2">
             <FiMaximize className="text-primary" />
-            <span>{farm.size_acres} acres</span>
+            <span>{farm.size_acres} hectares</span> {/* Unit changed to hectares */}
           </div>
           <div className="flex items-center gap-2">
             <FiClipboard className="text-primary" />

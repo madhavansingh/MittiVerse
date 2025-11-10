@@ -16,19 +16,19 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function FarmsMapView({ farms }) {
-  // Default center to Nairobi if no farms exist
-  const defaultCenter = [-1.286389, 36.817223];
+  const defaultCenter = [22.3511148, 78.6677428];
 
   return (
-    <div className="h-[75vh] w-full rounded-lg overflow-hidden shadow-md">
+    <div className="relative h-[75vh] w-full rounded-lg overflow-hidden shadow-md">
       <MapContainer 
         center={defaultCenter} 
         zoom={7} 
         style={{ height: '100%', width: '100%' }}
+        attributionControl={false}  // <-- Disable Leaflet's default attribution
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          
         />
         {farms.map(farm => (
           <Marker key={farm.id} position={[farm.latitude, farm.longitude]}>
@@ -44,6 +44,11 @@ function FarmsMapView({ farms }) {
           </Marker>
         ))}
       </MapContainer>
+
+      {/* Custom attribution */}
+      <div className="absolute bottom-2 right-2 bg-white/90 px-3 py-1 rounded text-sm text-gray-700 shadow-md pointer-events-none">
+        🇮🇳 India | <span className="font-semibold text-green-600">MittiVerse</span>
+      </div>
     </div>
   );
 }

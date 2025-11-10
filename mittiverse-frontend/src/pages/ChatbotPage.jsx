@@ -5,14 +5,18 @@ import { FiSend } from 'react-icons/fi';
 
 function ChatbotPage() {
   const [messages, setMessages] = useState([
-    { role: 'assistant', content: 'Hello! I am GreenBot. How can I help you with your climate-smart farming questions today?' }
+    {
+      role: 'assistant',
+      content:
+        '🌱 Namaste! I am MittiVerse – your AI guide for smart and sustainable farming in India. Ask me about soil, weather, crops, pests, or anything related to your farm!',
+    },
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   useEffect(scrollToBottom, [messages]);
@@ -22,17 +26,20 @@ function ChatbotPage() {
     if (!input.trim() || isLoading) return;
 
     const userMessage = { role: 'user', content: input };
-    setMessages(prev => [...prev, userMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
 
     try {
       const response = await apiClient.post('/chatbot/ask', { prompt: input });
       const assistantMessage = { role: 'assistant', content: response.data.reply };
-      setMessages(prev => [...prev, assistantMessage]);
+      setMessages((prev) => [...prev, assistantMessage]);
     } catch (error) {
-      const errorMessage = { role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' };
-      setMessages(prev => [...prev, errorMessage]);
+      const errorMessage = {
+        role: 'assistant',
+        content: '❌ Sorry, I encountered an error. Please try again.',
+      };
+      setMessages((prev) => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
     }
@@ -41,7 +48,7 @@ function ChatbotPage() {
   return (
     <div className="flex flex-col h-[calc(100vh-100px)] bg-surface rounded-xl shadow-md">
       <header className="p-4 border-b">
-        <h1 className="text-xl font-bold text-text-primary">AI Assistant (GreenBot)</h1>
+        <h1 className="text-xl font-bold text-text-primary">🤖 AI Assistant (MittiVerse)</h1>
       </header>
 
       <div className="flex-grow p-4 overflow-y-auto">
@@ -54,8 +61,16 @@ function ChatbotPage() {
                 animate={{ opacity: 1, y: 0 }}
                 className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
-                {msg.role === 'assistant' && <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0">🌿</div>}
-                <div className={`max-w-md p-3 rounded-lg ${msg.role === 'user' ? 'bg-secondary text-white' : 'bg-background'}`}>
+                {msg.role === 'assistant' && (
+                  <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0">
+                    🇮🇳
+                  </div>
+                )}
+                <div
+                  className={`max-w-md p-3 rounded-lg ${
+                    msg.role === 'user' ? 'bg-secondary text-white' : 'bg-background'
+                  }`}
+                >
                   <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
                 </div>
               </motion.div>
@@ -63,7 +78,7 @@ function ChatbotPage() {
           </AnimatePresence>
           {isLoading && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3 justify-start">
-              <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0">🌿</div>
+              <div className="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0">🇮🇳</div>
               <div className="max-w-md p-3 rounded-lg bg-background flex items-center gap-2">
                 <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-75"></span>
                 <span className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-150"></span>
@@ -81,11 +96,15 @@ function ChatbotPage() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about soil, pests, or crops..."
+            placeholder="Ask about soil, irrigation, pests, or climate..."
             className="flex-grow p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
             disabled={isLoading}
           />
-          <button type="submit" className="bg-primary text-white p-2 rounded-lg hover:bg-green-700 disabled:bg-gray-400" disabled={isLoading || !input.trim()}>
+          <button
+            type="submit"
+            className="bg-primary text-white p-2 rounded-lg hover:bg-green-700 disabled:bg-gray-400"
+            disabled={isLoading || !input.trim()}
+          >
             <FiSend size={20} />
           </button>
         </form>

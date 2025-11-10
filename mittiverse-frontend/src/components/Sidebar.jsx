@@ -32,7 +32,7 @@ function Sidebar() {
     return (
         <aside className="w-64 bg-surface text-text-primary p-4 shadow-lg flex flex-col h-screen sticky top-0">
             <div className="mb-8 text-2xl font-bold text-primary flex items-center gap-2 px-2 py-4 border-b">
-                🌿 GreenFund
+                🌿 MittiVerse
             </div>
 
             <nav className="flex-grow space-y-1">

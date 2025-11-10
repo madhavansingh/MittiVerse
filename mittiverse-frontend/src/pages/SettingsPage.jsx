@@ -177,7 +177,7 @@ function SettingsPage() {
               name="location"
               value={formData.location || ''} 
               onChange={handleChange}
-              placeholder="e.g., Nairobi, Kenya"
+              placeholder="e.g., Punjab, Delhi"
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
             />
           </div>

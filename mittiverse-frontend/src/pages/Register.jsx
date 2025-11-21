@@ -42,7 +42,7 @@ function Register() {
     {/* --- ^^^^ END MODIFICATIONS ^^^^ --- */}
 
         <h2 className="text-2xl font-bold text-text-primary mb-6 text-center">
-          Create Your GreenFund Account
+          Create Your MittiVerse Account
         </h2>
         <form onSubmit={handleSubmit}>
           {error && <p className="text-red-500 text-sm mb-4">{error}</p>}

@@ -1,4 +1,4 @@
-# Backend Project Structure — GreenFund Backend
+# Backend Project Structure - MittiVerse Backend
 
 This file documents the current backend repository structure and a short description for important files and folders. Use this as a quick reference when navigating the codebase.
 

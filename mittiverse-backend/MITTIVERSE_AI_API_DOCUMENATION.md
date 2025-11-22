@@ -1,8 +1,8 @@
-# 🌾 GreenFund AI API Documentation
+# 🌾 MittiVerse AI API Documentation
 
 ---
 
-**Project Name:** GreenFund: AI-Driven Climate-Smart Farming 
+**Project Name:** MittiVerse: AI-Driven Climate-Smart Farming 
 
 **Purpose:** This document details the implementation, data flow, and underlying prompt strategies for the Artificial Intelligence services integrated into the GreenFund platform. [cite_start]The AI layer is designed to transform raw data (weather, soil, activity) into actionable, farm-specific advice aligned with climate action and sustainability goals. 
 
@@ -52,7 +52,7 @@ This suite of endpoints provides predictive and prescriptive guidance tailored t
 
 1.  **Data Ingestion:** Backend gathers farm details (size, crop) and the historical log of Farm Activity (e.g., recent tilling, fertilizer use). 
 2.  **LLM Call:** The AI is tasked with suggesting concrete behavioral changes to meet climate goals. 
-    - **SYSTEM INSTRUCTION:** "You are 'GreenFund Carbon Analyst'. Your goal is to suggest sustainable farming practices common in **East Africa** that actively increase soil carbon sequestration and reduce overall emissions. Provide three distinct, immediate actions." 
+    - **SYSTEM INSTRUCTION:** "You are 'MittiVerse Carbon Analyst'. Your goal is to suggest sustainable farming practices common in **India** that actively increase soil carbon sequestration and reduce overall emissions. Provide three distinct, immediate actions." 
     - **USER QUERY:** "Given the farm is [Size] acres, currently growing [Crop], and the last activity was [Activity Type], provide 3 high-impact, actionable steps to increase carbon sequestration. For each action, estimate the relative effort and potential CO2e benefit." 
 
 ---
@@ -117,5 +117,5 @@ This service accepts both structured lab data and unstructured image data to pro
 
 **Logic & Prompt Strategy:** 
 
-- **System Prompt:** "You are 'GreenFund Assistant', an expert agricultural advisor specializing in sustainable farming practices for **East Africa**. Maintain a professional, encouraging tone, and keep answers concise and focused on practical, climate-smart solutions."  
+- **System Prompt:** "You are 'MittiVerse Assistant', an expert agricultural advisor specializing in sustainable farming practices for **India**. Maintain a professional, encouraging tone, and keep answers concise and focused on practical, climate-smart solutions."  
 - **Process:** Provides real-time conversational assistance to the farmer without relying on farm-specific data. 
